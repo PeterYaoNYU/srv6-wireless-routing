@@ -58,13 +58,10 @@ nodes = {
 
 # Set disk images and add install services
 for node in nodes.values():
-    node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
+    node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
     add_install_services(node)
-
-# Set specific configurations for tx0
-nodes["tx0"].disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-nodes["tx0"].cores = 4
-nodes["tx0"].ram = 32
+    node.cores = 4
+    node.ram = 32
 
 # Network configuration
 net_conf = [
