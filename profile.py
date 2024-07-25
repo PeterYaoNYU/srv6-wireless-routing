@@ -55,7 +55,7 @@ for net in net_conf:
     link = request.Link(net["name"])
     link.routable = True
     for node_info in net["nodes"]:
-        iface = nodes[node_info["name"]].addInterface(f'{net["name"]}-{node_info["addr"]}')
+        iface = nodes[node_info["name"]].addInterface('{0}-{1}'.format(net["name"], node_info["addr"]))
         iface.addAddress(pg.IPv4Address(node_info["addr"], net["subnet"]))
         iface.bandwidth = 1000
         link.addInterface(iface)
