@@ -19,29 +19,52 @@ pc = portal.Context()
 # Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
 
-# tx0
-node_tx0 = request.XenVM("tx0")
-node_tx0.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-node_tx0.cores = 4
-node_tx0.ram = 32
-node_tx0.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
-node_tx0.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+# # tx0
+# node_tx0 = request.XenVM("tx0")
+# node_tx0.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
+# node_tx0.cores = 4
+# node_tx0.ram = 32
+# node_tx0.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
+# node_tx0.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
 
-#router
-node_router = request.XenVM("tx0")
-node_router.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-node_router.cores = 4
-node_router.ram = 32
-node_router.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
-node_router.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+# #router
+# node_router = request.XenVM("tx0")
+# node_router.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
+# node_router.cores = 4
+# node_router.ram = 32
+# node_router.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
+# node_router.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
 
-#delay
-node_delay = request.XenVM("tx0")
-node_delay.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-node_delay.cores = 4
-node_delay.ram = 32
-node_delay.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
-node_delay.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+# #delay
+# node_delay = request.XenVM("tx0")
+# node_delay.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
+# node_delay.cores = 4
+# node_delay.ram = 32
+# node_delay.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
+# node_delay.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+
+# Function to add services to install packages
+def add_install_services(node):
+    node.addService(pg.Execute('/bin/sh', 'sudo apt-get update'))
+    node.addService(pg.Execute('/bin/sh', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+
+# Node definitions
+nodes = {
+    "tx0": request.XenVM("tx0"),
+    "delay": request.XenVM("delay"),
+    "router": request.XenVM("router"),
+    "rx0": request.XenVM("rx0")
+}
+
+# Set disk images and add install services
+for node in nodes.values():
+    node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD'
+    add_install_services(node)
+
+# Set specific configurations for tx0
+nodes["tx0"].disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
+nodes["tx0"].cores = 4
+nodes["tx0"].ram = 32
 
 # Network configuration
 net_conf = [
