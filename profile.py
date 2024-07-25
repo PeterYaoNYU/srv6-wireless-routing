@@ -65,9 +65,9 @@ for node in nodes.values():
 
 # Network configuration
 net_conf = [
-    {"name": "net-tx", "subnet": "10.0.0.0/24", "nodes": [{"name": "tx0", "addr": "10.0.0.100"}, {"name": "delay", "addr": "10.0.0.2"}]},
-    {"name": "net-delay-router", "subnet": "10.0.2.0/24", "nodes": [{"name": "delay", "addr": "10.0.2.2"}, {"name": "router", "addr": "10.0.2.1"}]},
-    {"name": "net-rx", "subnet": "10.0.5.0/24", "nodes": [{"name": "router", "addr": "10.0.5.1"}, {"name": "rx0", "addr": "10.0.5.100"}]}
+    {"name": "net-tx", "subnet": "255.255.255.0", "nodes": [{"name": "tx0", "addr": "10.0.0.100"}, {"name": "delay", "addr": "10.0.0.2"}]},
+    {"name": "net-delay-router", "subnet": "255.255.255.0", "nodes": [{"name": "delay", "addr": "10.0.2.2"}, {"name": "router", "addr": "10.0.2.1"}]},
+    {"name": "net-rx", "subnet": "255.255.255.0", "nodes": [{"name": "router", "addr": "10.0.5.1"}, {"name": "rx0", "addr": "10.0.5.100"}]}
 ]
 
 # Create interfaces and links
