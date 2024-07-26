@@ -1,1 +1,1 @@
-rm -f {flow}-ss.txt; start_time=$(date +%s); while true; do ss --no-header -eipn dst 10.0.5.100 | ts '%.s' | tee -a {flow}-ss.txt; current_time=$(date +%s); elapsed_time=$((current_time - start_time));  if [ $elapsed_time -ge {duration} ]; then break; fi; sleep 0.1; done;
+rm -f tx0-ss.txt; start_time=$(date +%s); while true; do ss --no-header -eipn dst 10.0.5.100 | ts '%.s' | tee -a {flow}-ss.txt; current_time=$(date +%s); elapsed_time=$((current_time - start_time));  if [ $elapsed_time -ge 20]; then break; fi; sleep 0.1; done;
