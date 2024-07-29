@@ -77,7 +77,7 @@ for net in net_conf:
     for node_info in net["nodes"]:
         iface = nodes[node_info["name"]].addInterface('{0}-{1}'.format(net["name"], node_info["addr"]))
         iface.addAddress(pg.IPv4Address(node_info["addr"], net["subnet"]))
-        iface.bandwidth = 1000
+        iface.bandwidth = 1000000
         link.addInterface(iface)
 
 
