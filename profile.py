@@ -19,29 +19,14 @@ pc = portal.Context()
 # Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
 
-# # tx0
-# node_tx0 = request.XenVM("tx0")
-# node_tx0.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-# node_tx0.cores = 4
-# node_tx0.ram = 32
-# node_tx0.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
-# node_tx0.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+# Optional physical type for all nodes.
+pc.defineParameter("phystype",  "Optional hardware type",
+                   portal.ParameterType.STRING, "d430",
+                   longDescription="Specify hardware type (d430 or d820)")
 
-# #router
-# node_router = request.XenVM("tx0")
-# node_router.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-# node_router.cores = 4
-# node_router.ram = 32
-# node_router.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
-# node_router.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
-
-# #delay
-# node_delay = request.XenVM("tx0")
-# node_delay.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-# node_delay.cores = 4
-# node_delay.ram = 32
-# node_delay.addService(pg.Execute('/bin/bash', 'sudo apt-get update'))
-# node_delay.addService(pg.Execute('/bin/bash', 'sudo apt-get install -y iperf3 net-tools moreutils'))
+# Retrieve the values the user specifies during instantiation.
+params = pc.bindParameters()
+pc.verifyParameters()
 
 # Function to add services to install packages
 def add_install_services(node):
@@ -50,10 +35,10 @@ def add_install_services(node):
 
 # Node definitions
 nodes = {
-    "tx0": request.XenVM("tx0"),
-    "delay": request.XenVM("delay"),
-    "router": request.XenVM("router"),
-    "rx0": request.XenVM("rx0")
+    "tx0": request.RawPC( "tx0" ),
+    "delay": request.RawPC("delay"),
+    "router: request.RawPC("router"),
+    "rx0": request.RawPC( "rx0" )
 }
 
 # Set disk images and add install services
