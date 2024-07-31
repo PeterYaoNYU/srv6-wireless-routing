@@ -38,15 +38,20 @@ nodes = {
     "tx0": request.RawPC( "tx0" ),
     "router0": request.RawPC("router0"),
     "router1": request.RawPC("router1"),
-    "rx0": request.RawPC( "rx0" )
 }
 
 # Set disk images and add install services
 for node in nodes.values():
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
+    node.hardware_type = params.phystype
     add_install_services(node)
-    node.cores = 4
-    node.ram = 32
+
+
+rx0 = request.RawPC("rx0")
+rx0.hardware_type = params.phystype
+rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
+rx0.startVNC()
+
 
 # Network configuration
 net_conf = [
