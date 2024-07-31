@@ -52,6 +52,8 @@ rx0.hardware_type = params.phystype
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
 rx0.startVNC()
 
+nodes[rx0] = rx0
+
 
 # Network configuration
 net_conf = [
