@@ -36,8 +36,8 @@ def add_install_services(node):
 # Node definitions
 nodes = {
     "tx0": request.RawPC( "tx0" ),
-    "delay": request.RawPC("delay"),
-    "router": request.RawPC("router"),
+    "router0": request.RawPC("delay"),
+    "router1": request.RawPC("router"),
     "rx0": request.RawPC( "rx0" )
 }
 
