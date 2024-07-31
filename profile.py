@@ -36,8 +36,8 @@ def add_install_services(node):
 # Node definitions
 nodes = {
     "tx0": request.RawPC( "tx0" ),
-    "router0": request.RawPC("delay"),
-    "router1": request.RawPC("router"),
+    "router0": request.RawPC("router0"),
+    "router1": request.RawPC("router1"),
     "rx0": request.RawPC( "rx0" )
 }
 
@@ -50,9 +50,9 @@ for node in nodes.values():
 
 # Network configuration
 net_conf = [
-    {"name": "net-tx", "subnet": "255.255.255.0", "nodes": [{"name": "tx0", "addr": "10.0.0.100"}, {"name": "delay", "addr": "10.0.0.2"}]},
-    {"name": "net-delay-router", "subnet": "255.255.255.0", "nodes": [{"name": "delay", "addr": "10.0.2.2"}, {"name": "router", "addr": "10.0.2.1"}]},
-    {"name": "net-rx", "subnet": "255.255.255.0", "nodes": [{"name": "router", "addr": "10.0.5.1"}, {"name": "rx0", "addr": "10.0.5.100"}]}
+    {"name": "net-tx", "subnet": "255.255.255.0", "nodes": [{"name": "tx0", "addr": "10.0.0.100"}, {"name": "router0", "addr": "10.0.0.2"}]},
+    {"name": "net-delay-router", "subnet": "255.255.255.0", "nodes": [{"name": "router0", "addr": "10.0.2.2"}, {"name": "router1", "addr": "10.0.2.1"}]},
+    {"name": "net-rx", "subnet": "255.255.255.0", "nodes": [{"name": "router1", "addr": "10.0.5.1"}, {"name": "rx0", "addr": "10.0.5.100"}]}
 ]
 
 # Create interfaces and links
