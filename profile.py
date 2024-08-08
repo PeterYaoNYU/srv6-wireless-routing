@@ -37,8 +37,6 @@ def add_install_services(node):
 # Function to configure the rx0 node at startup, since the configuration each time is relly getting more and more annoyting
 # and the link state of the stupid idiotic powder testbed changes after a few hours. 
 
-def add_rx0_startup_services(node):
-    node.addService(pg.Execute("bin/sh", 
 
 # Node definitions
 nodes = {
