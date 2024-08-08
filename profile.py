@@ -36,7 +36,8 @@ def add_install_services(node):
 
 # Function to configure the rx0 node at startup, since the configuration each time is relly getting more and more annoyting
 # and the link state of the stupid idiotic powder testbed changes after a few hours. 
-
+def add_install_services_rx0(node):
+    node.addService(pg.Execute('/bin/sh', '/local/repository/setup_rx0.sh'))
 
 # Node definitions
 nodes = {
@@ -57,6 +58,7 @@ rx0.hardware_type = params.phystype
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
 bs = rx0.Blockstore("bs", "/mydata")
 bs.size = "50GB"
+add_install_services_rx0(rx0)
 rx0.startVNC()
 
 nodes["rx0"] = rx0
