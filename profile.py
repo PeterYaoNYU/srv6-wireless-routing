@@ -33,6 +33,13 @@ def add_install_services(node):
     node.addService(pg.Execute('/bin/sh', 'sudo apt-get update'))
     node.addService(pg.Execute('/bin/sh', 'sudo apt-get install -y iperf3 net-tools moreutils'))
 
+
+# Function to configure the rx0 node at startup, since the configuration each time is relly getting more and more annoyting
+# and the link state of the stupid idiotic powder testbed changes after a few hours. 
+
+def add_rx0_startup_services(node):
+    node.addService(pg.Execute("bin/sh", 
+
 # Node definitions
 nodes = {
     "tx0": request.RawPC( "tx0" ),
@@ -50,6 +57,8 @@ for node in nodes.values():
 rx0 = request.RawPC("rx0")
 rx0.hardware_type = params.phystype
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
+bs = rx0.Blockstore("bs", "/mydata")
+bs.size = "50GB"
 rx0.startVNC()
 
 nodes["rx0"] = rx0
