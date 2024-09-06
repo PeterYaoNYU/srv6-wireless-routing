@@ -1,9 +1,5 @@
 """
-## Static routing
-
-In this experiment, you will observe how routing principles apply when packets are forwarded by a router from one network segment to the next.
-
-It should take about 60-120 minutes to run this experiment.
+## e2e low latency test with static routing and vm
 """
 
 # Import the Portal object.
@@ -39,12 +35,10 @@ nodes = {
 # Set disk images and add install services
 for node in nodes.values():
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-    node.hardware_type = params.phystype
     add_install_services(node)
 
 
 rx0 = request.XenVM("rx0")
-rx0.hardware_type = params.phystype
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
 bs = rx0.Blockstore("bs", "/mydata")
 bs.size = "50GB"
