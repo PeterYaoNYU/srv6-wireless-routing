@@ -62,11 +62,14 @@ cd /mydata
 git clone https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed.git  
 cd /mydata/oai-cn5g-fed  
 
-cp /local/repository/etc/core-slice-conf/docker-compose-basic-nrf.yaml /mydata/oai-cn5g-fed/docker-compose
+cd /mydata
+git clone https://github.com/PeterYaoNYU/core-network-5g.git 
 
-cp /local/repository/etc/core-slice-conf/basic* /mydata/oai-cn5g-fed/docker-compose/conf
+cp /mydata/core-network-5g/etc/core-slice-conf/docker-compose-basic-nrf.yaml /mydata/oai-cn5g-fed/docker-compose
 
-cp /local/repository/etc/new_core_network.py /mydata/oai-cn5g-fed/docker-compose  
+cp /mydata/core-network-5g/etc/core-slice-conf/basic* /mydata/oai-cn5g-fed/docker-compose/conf
+
+cp /mydata/core-network-5g/etc/new_core_network.py /mydata/oai-cn5g-fed/docker-compose  
 
 sudo ethtool -K eth1 gro off
 sudo ethtool -K eth1 lro off
