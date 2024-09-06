@@ -19,14 +19,14 @@ pc = portal.Context()
 # Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
 
-# Optional physical type for all nodes.
-pc.defineParameter("phystype",  "Optional hardware type",
-                   portal.ParameterType.STRING, "d430",
-                   longDescription="Specify hardware type (d430 or d820)")
+# # Optional physical type for all nodes.
+# pc.defineParameter("phystype",  "Optional hardware type",
+#                    portal.ParameterType.STRING, "d430",
+#                    longDescription="Specify hardware type (d430 or d820)")
 
-# Retrieve the values the user specifies during instantiation.
-params = pc.bindParameters()
-pc.verifyParameters()
+# # Retrieve the values the user specifies during instantiation.
+# params = pc.bindParameters()
+# pc.verifyParameters()
 
 # Function to add services to install packages
 def add_install_services(node):
@@ -49,12 +49,12 @@ nodes = {
 # Set disk images and add install services
 for node in nodes.values():
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-    node.hardware_type = params.phystype
+    node.hardware_type = "d430"
     add_install_services(node)
 
 
 rx0 = request.RawPC("rx0")
-rx0.hardware_type = params.phystype
+rx0.hardware_type = "d430"
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
 bs = rx0.Blockstore("bs", "/mydata")
 bs.size = "50GB"
