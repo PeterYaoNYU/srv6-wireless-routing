@@ -19,15 +19,6 @@ pc = portal.Context()
 # Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
 
-# Optional physical type for all nodes.
-pc.defineParameter("phystype",  "Optional hardware type",
-                   portal.ParameterType.STRING, "d430",
-                   longDescription="Specify hardware type (d430 or d820)")
-
-# Retrieve the values the user specifies during instantiation.
-params = pc.bindParameters()
-pc.verifyParameters()
-
 # Function to add services to install packages
 def add_install_services(node):
     node.addService(pg.Execute('/bin/sh', 'sudo apt-get update'))
@@ -43,10 +34,9 @@ nodes = {
 
 # Set disk images and add install services
 for node in nodes.values():
+    node.hardware_type = "d430"
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
     add_install_services(node)
-    node.cores = 4
-    node.ram = 32
 
 # Network configuration
 net_conf = [
