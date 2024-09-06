@@ -16,6 +16,8 @@ import geni.rspec.emulab as emulab
 # Create a portal object,
 pc = portal.Context()
 
+request = pc.makeRequestRSpec()
+
 # Function to add services to install packages
 def add_install_services(node):
     node.addService(pg.Execute('/bin/sh', 'sudo apt-get update'))
