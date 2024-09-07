@@ -49,12 +49,12 @@ nodes = {
 # Set disk images and add install services
 for node in nodes.values():
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-    node.hardware_type = "d710"
+    node.hardware_type = "d820"
     add_install_services(node)
 
 
 rx0 = request.RawPC("rx0")
-rx0.hardware_type = "d430"
+rx0.hardware_type = "d820"
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
 bs = rx0.Blockstore("bs", "/mydata")
 bs.size = "50GB"
