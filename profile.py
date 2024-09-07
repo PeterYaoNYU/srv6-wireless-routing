@@ -49,7 +49,7 @@ nodes = {
 # Set disk images and add install services
 for node in nodes.values():
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-    node.hardware_type = "d430"
+    node.hardware_type = "d710"
     add_install_services(node)
 
 
