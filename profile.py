@@ -41,15 +41,15 @@ def add_install_services_rx0(node):
 
 # Node definitions
 nodes = {
-    "tx0": request.RawPC( "tx0" ),
-    "router0": request.RawPC("router0"),
-    "router1": request.RawPC("router1"),
+    "tx0": request.XenVM( "tx0" ),
+    "router0": request.XenVM("router0"),
+    "router1": request.XenVM("router1"),
 }
 
 # Set disk images and add install services
 for node in nodes.values():
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD'
-    node.hardware_type = "d710"
+    # node.hardware_type = "d710"
     add_install_services(node)
 
 
