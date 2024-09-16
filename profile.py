@@ -54,7 +54,7 @@ for node in nodes.values():
 
 
 rx0 = request.RawPC("rx0")
-rx0.hardware_type = "d820"
+rx0.hardware_type = "d430"
 rx0.disk_image = "urn:publicid:IDN+emulab.net+image+mww2023:oai-cn5g-rfsim"
 bs = rx0.Blockstore("bs", "/mydata")
 bs.size = "50GB"
